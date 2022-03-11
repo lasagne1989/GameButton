@@ -1,0 +1,35 @@
+import time
+import turtle
+import keyboard
+import random
+
+window = turtle.Screen()
+window.tracer(0)
+
+names = ["Gordon", "Claire", "Steve", "Emma"]
+pressCount = 0
+
+first_player= turtle.Turtle()
+timer_text = turtle.Turtle()
+failure_text = turtle.Turtle()
+
+whoStarts = random.choice(names)
+
+def timerloop() -> object:
+    start = time.time() + 5
+    while start > time.time():
+        timer_text.clear()
+        timer_text.write(int(start - time.time()), font=("Courier", 30))
+    while start < time.time():
+        timer_text.clear()
+        failure_text.write('%s you fucked it' % whoStarts, font=("Comic Sans", 50))
+        window.update()
+
+
+while True:
+    if keyboard.is_pressed('p') and pressCount == 0:
+        first_player.write('%s Goes First!' % whoStarts, font=("Comic Sans", 50))
+        pressCount = 1
+    if keyboard.is_pressed('p') and pressCount == 1:
+        first_player.clear()
+        timerloop()
