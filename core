@@ -9,8 +9,9 @@ countPress= 0  #has the game been started
 #startMessage= StringVar()    #the message after the first player is selected
 firstPlayer= str()     #the first player (who will be slected in intialiseGame below)
 temp=int()
+stop = false
 player=int()
-pin = [10, 12]
+pin = [10, 12, 18]
 channel = pin[0]
 players = ["Gordon", "Claire", "Emma", "Steve"]    #array of the players
 
@@ -42,17 +43,20 @@ def fuckedIt():
     submit(channel)
     
         
-#def countdown():
-
-        
+def loop_stop():
+    global stop
+    stop= not stop
 
 def submit(channel):#change to wait til press.
     global temp
+    global stop
+    stop = False
     if countPress == 0:
         intialiseGame()
     else:
+        GPIO.add_event_detect(pin[2],GPIO.FALLING, callback=loop_stop, bouncetime=1000)
         temp=5
-        while temp>-1:
+        while temp>-1 and stop=False:
             if temp > -1:
                 print(temp, end='\r')
                 #root.update()
@@ -60,7 +64,9 @@ def submit(channel):#change to wait til press.
                 temp -= 1
             if temp== -1:
                 fuckedIt()
-        
+        else:
+            submit()
+
 
 regEvent = press.button(pin, GPIO.IN, GPIO.PUD_DOWN)      
 regEvent.setup()
