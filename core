@@ -65,7 +65,7 @@ def submit(channel):#change to wait til press.
             if temp== -1:
                 fuckedIt()
         else:
-            submit()
+            submit(channel)
 
 
 regEvent = press.button(pin, GPIO.IN, GPIO.PUD_DOWN)      
