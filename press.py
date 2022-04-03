@@ -3,7 +3,8 @@ import RPi.GPIO as GPIO
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 
-class button:
+
+class Button:
     def __init__(self, inout, updown, fallrise, call):
         self.inout = inout
         self.updown = updown
@@ -19,6 +20,6 @@ class button:
     def wait(self):
         GPIO.wait_for_edge(10, self.fallrise, bouncetime=1000)
 
-        #GPIO.PUD_UP
-        #GPIO.PUD_DOWN
-        #GPIO.IN
+        # GPIO.PUD_UP
+        # GPIO.PUD_DOWN
+        # GPIO.IN

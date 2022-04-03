@@ -68,7 +68,7 @@ def submit(channel):#change to wait til press.
             submit(channel)
 
 
-regEvent = press.button(pin, GPIO.IN, GPIO.PUD_DOWN)      
+regEvent = press.Button(pin, GPIO.IN, GPIO.PUD_DOWN)
 regEvent.setup()
 #while True:
 GPIO.add_event_detect(channel,GPIO.FALLING,callback=submit,bouncetime=1000)

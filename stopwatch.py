@@ -12,7 +12,7 @@ class Timer:
         root.geometry("320x240")
         self.display = Label(master, text="We're going to play a little game", font=("Arial", 25))
         self.display.place(relx=.5, rely=.5, anchor=CENTER)
-        regEvent = press.button(10, GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, self.start)
+        regEvent = press.Button(10, GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, self.start)
         regEvent.setup()
         regEvent.event()
         self.timeit = False
@@ -35,9 +35,9 @@ class Timer:
                 self.timeit = not self.timeit
         else:
             self.display3.destroy()
-            self.display4 = Label(root, textvariable="You Fucked It!", font=("Arial", 25))
+            self.display4 = Label(root, text="You Fucked It!", font=("Arial", 25))
             self.display4.place(relx=.5, rely=.5, anchor=CENTER)
-            waitEvent = press.button(10, GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, 0)
+            waitEvent = press.Button(10, GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, 0)
             waitEvent.setup()
             waitEvent.wait()
             self.display4.destroy()
