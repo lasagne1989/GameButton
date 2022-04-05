@@ -6,8 +6,9 @@ import RPi.GPIO as GPIO
 root = Tk()
 
 class Timer:
-    def __init__(self, master):
+    def __init__(self, master, timertext):
         self.master = master
+        self.timertext = timertext
         root.geometry("320x240")
         self.display = Label(master, text="We're going to play a little game", font=("Arial", 25))
         self.display.place(relx=.5, rely=.5, anchor=CENTER)
