@@ -41,7 +41,7 @@ class Timer:
             wait_event.setup()
             wait_event.wait()
             self.display4.destroy()
-            self.start()
+            self.start(channel)
 
     def start(self, channel):
         if not self.started:
