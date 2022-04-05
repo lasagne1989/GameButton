@@ -52,6 +52,7 @@ class Timer:
                 pick = firstplayer.playerPicker(self.people, self.playerNum)
                 self.playerNum = pick.nextPlayer()
                 self.player = self.people[self.playerNum]
+                root.update()
                 self.timeit = not self.timeit
         else:
             self.display3.destroy()
