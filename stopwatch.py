@@ -22,7 +22,7 @@ class Timer:
 
     def increment_timer(self):
         ctr = int(self.timertext.get())
-        if ctr >0:
+        if ctr >-1:
             self.timertext.set(ctr - 1)
             if self.timeit:
                 self.master.update()
@@ -41,7 +41,8 @@ class Timer:
             wait_event.setup()
             wait_event.wait()
             self.display4.destroy()
-            self.start(channel)
+            self.timeit = not self.timeit
+            self.start(12)
 
     def start(self, channel):
         if not self.started:
