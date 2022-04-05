@@ -53,6 +53,7 @@ class Timer:
                 self.timeit = not self.timeit
                 self.timertext = DoubleVar()
                 self.timertext.set(5 + 1)
+                self.nextplayer()
                 self.increment_timer()
 
     def fucked_it(self):
@@ -79,14 +80,13 @@ class Timer:
         ctr = int(self.timertext.get())
         if ctr > 0:
             self.timertext.set(ctr - 1)
-            if self.timeit:
-                root.update()
-                self.master.after(1000, self.increment_timer)
-            else:
-                self.timertext.set(5)
-                self.nextplayer()
-                self.timeit = not self.timeit
-                self.master.after(1000, self.increment_timer)
+            #if self.timeit:
+            root.update()
+            self.master.after(1000, self.increment_timer)
+            #else:
+            #    self.timertext.set(5)
+             #   self.nextplayer()
+             #   self.timeit = not self.timeit
         else:
             self.fucked_it()
 
