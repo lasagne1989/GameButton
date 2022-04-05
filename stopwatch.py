@@ -22,7 +22,7 @@ class Timer:
 
     def increment_timer(self):
         ctr = int(self.timertext.get())
-        if ctr >-1:
+        if ctr >0:
             self.timertext.set(ctr - 1)
             if self.timeit:
                 self.master.update()
