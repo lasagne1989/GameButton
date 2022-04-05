@@ -44,11 +44,11 @@ class Timer:
         else:
             if not self.firstrun:
                 self.timeit = not self.timeit
+                self.firstrun = not self.firstrun
                 self.timertext = DoubleVar()
                 self.timertext.set(5 + 1)
                 self.first_run()
                 self.increment_timer()
-                self.firstrun = not self.firstrun
             else:
                 self.timeit = not self.timeit
                 self.timertext = DoubleVar()
