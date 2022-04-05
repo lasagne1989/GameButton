@@ -73,7 +73,7 @@ class Timer:
         #self.nextplayer()
         self.timeit = not self.timeit
         self.firstrun = not self.firstrun
-        self.start(12)
+        #self.start(12)
 
     def nextplayer(self):
         pick = firstplayer.playerPicker(self.people, self.playerNum)
