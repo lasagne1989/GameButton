@@ -22,7 +22,7 @@ class Timer:
 
     def increment_timer(self):
         ctr = int(self.timertext.get())
-        if ctr >-1:
+        if ctr >0:
             self.timertext.set(ctr - 1)
             if self.timeit:
                 self.master.update()
@@ -34,13 +34,17 @@ class Timer:
                 self.player = self.people[self.playerNum]
                 self.timeit = not self.timeit
         else:
+            self.display2.destroy()
             self.display3.destroy()
-            self.display4 = Label(root, text="You Fucked It!", font=("Arial", 25))
+            self.display4 = Label(root, text="%s, You Fucked It!" %self.player, font=("Arial", 25))
             self.display4.place(relx=.5, rely=.5, anchor=CENTER)
             wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, 0)
             wait_event.setup()
             wait_event.wait()
-            #self.display4.destroy()
+            self.display4.destroy()
+            pick = firstplayer.playerPicker(self.people, self.playerNum)
+            self.playerNum = pick.nextPlayer()
+            self.player = self.people[self.playerNum]
             self.timeit = not self.timeit
             self.start(12)
 
@@ -58,7 +62,7 @@ class Timer:
             self.timertext = DoubleVar()
             self.timertext.set(5 + 1)
             self.display1.destroy()
-            self.display2 = Label(root, text=self.player, font=("Arial", 25))
+            self.display2 = Label(root, textvariable=self.player, font=("Arial", 25))
             self.display2.place(relx=.5, rely=.5, anchor=S)
             self.display3 = Label(root, textvariable=self.timertext, font=("Arial", 25))
             self.display3.place(relx=.5, rely=.5, anchor=N)
