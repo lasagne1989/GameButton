@@ -54,6 +54,7 @@ class Timer:
                 self.timertext = DoubleVar()
                 self.timertext.set(5 + 1)
                 self.nextplayer()
+                root.update()
                 self.increment_timer()
 
     def fucked_it(self):
