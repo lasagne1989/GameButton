@@ -68,7 +68,7 @@ class Timer:
             self.playerNum = pick.nextPlayer()
             self.player = self.people[self.playerNum]
             self.timeit = not self.timeit
-            self.start(12)
+            #self.start(12)
 
 
 app = Timer(root)
