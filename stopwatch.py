@@ -62,7 +62,8 @@ class Timer:
             wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, 0)
             wait_event.setup()
             wait_event.wait()
-            #self.display4.destroy()
+            self.display2.destroy()
+            self.display4.destroy()
             pick = firstplayer.playerPicker(self.people, self.playerNum)
             self.playerNum = pick.nextPlayer()
             self.player = self.people[self.playerNum]
