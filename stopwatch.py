@@ -95,5 +95,5 @@ class Timer:
             self.fucked_it()
 
 
-app = Timer(root)
+app = Timer(root, 5)
 root.mainloop()
