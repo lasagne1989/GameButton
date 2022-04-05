@@ -33,6 +33,7 @@ class Timer:
                 self.playerNum = pick.nextPlayer()
                 self.player = self.people[self.playerNum]
                 self.timeit = not self.timeit
+                self.sleep(1)
         else:
             #self.display3.destroy()
             self.display3 = Label(root, text="You Fucked It!", font=("Arial", 25))
