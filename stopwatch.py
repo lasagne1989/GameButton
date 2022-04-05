@@ -30,7 +30,6 @@ class Timer:
         self.started = not self.started
 
     def first_run (self):
-        print("1st run")
         self.display1.destroy()
         self.display2 = Label(root, text=self.player, font=("Arial", 25))
         self.display2.place(relx=.5, rely=.5, anchor=S)
@@ -44,6 +43,7 @@ class Timer:
             self.initialise()
         else:
             if not self.firstrun:
+                print("1st run")
                 self.timeit = not self.timeit
                 self.firstrun = not self.firstrun
                 self.timertext = DoubleVar()
@@ -51,11 +51,12 @@ class Timer:
                 self.first_run()
                 self.increment_timer()
             else:
+                print("reset")
                 self.timeit = not self.timeit
                 self.timertext = DoubleVar()
                 self.timertext.set(5 + 1)
+                print(self.timertext)
                 self.nextplayer()
-                root.update()
                 self.increment_timer()
 
     def fucked_it(self):
