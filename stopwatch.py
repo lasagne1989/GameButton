@@ -26,19 +26,19 @@ class Timer:
         if ctr > 0:
             self.timertext.set(ctr - 1)
             if self.timeit:
-                self.master.update()
+                root.update()
                 self.master.after(1000, self.increment_timer)
             else:
                 self.timertext.set(5)
                 pick = firstplayer.playerPicker(self.people, self.playerNum)
                 self.playerNum = pick.nextPlayer()
                 self.player = self.people[self.playerNum]
-                time.sleep(1)
                 self.timeit = not self.timeit
         else:
             #self.display3.destroy()
             #self.display3 = Label(root, text="You Fucked It!", font=("Arial", 25))
             self.timertext.set(1000000)
+            time.sleep(3)
             #self.display3.place(relx=.5, rely=.5, anchor=N)
             wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, 0)
             wait_event.setup()
