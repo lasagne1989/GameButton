@@ -67,7 +67,7 @@ class Timer:
         wait_event.wait()
         self.display2.destroy()
         self.display4.destroy()
-        self.nextplayer()
+        #self.nextplayer()
         self.timeit = not self.timeit
         self.firstrun = not self.firstrun
         self.start(12)
