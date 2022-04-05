@@ -16,7 +16,7 @@ class Timer:
         reg_event.event()
         self.timeit = False
         self.started = False
-        self.firstrun= False
+        self.firstrun = False
         self.people = ['Gordon', 'Claire', 'Emma', 'Steve']
         self.playerCount = len(self.people)
 
@@ -86,6 +86,7 @@ class Timer:
                 self.timertext.set(5)
                 self.nextplayer()
                 self.timeit = not self.timeit
+                self.master.after(1000, self.increment_timer)
         else:
             self.fucked_it()
 
