@@ -1,4 +1,5 @@
 import press
+import time
 import firstplayer
 from tkinter import *
 import RPi.GPIO as GPIO
@@ -33,10 +34,11 @@ class Timer:
                 self.playerNum = pick.nextPlayer()
                 self.player = self.people[self.playerNum]
                 self.timeit = not self.timeit
-                self.sleep(1)
+                time.sleep(1)
         else:
             #self.display3.destroy()
-            self.display3 = Label(root, text="You Fucked It!", font=("Arial", 25))
+            #self.display3 = Label(root, text="You Fucked It!", font=("Arial", 25))
+            self.timertext = "You Fucked It!"
             #self.display3.place(relx=.5, rely=.5, anchor=N)
             wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, 0)
             wait_event.setup()
