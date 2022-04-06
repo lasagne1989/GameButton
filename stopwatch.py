@@ -34,11 +34,14 @@ class Timer:
             self.display1.destroy()
             self.timertext = DoubleVar()
             self.timertext.set(5 + 1)
-            self.display2 = Label(root, textvariable=self.player, font=("Arial", 25))
+            self.display2 = Label(root, text=self.player, font=("Arial", 25))
             self.display2.place(relx=.5, rely=.5, anchor=S)
             self.display3 = Label(root, textvariable=self.timertext, font=("Arial", 25))
             self.display3.place(relx=.5, rely=.5, anchor=N)
             self.increment_timer()
+
+    def player(self):
+
 
     def increment_timer(self):
         ctr = int(self.timertext.get())
