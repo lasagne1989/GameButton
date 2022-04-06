@@ -20,20 +20,12 @@ class Timer:
         self.people = ['Gordon', 'Claire', 'Emma', 'Steve']
         self.playerCount = len(self.people)
 
-    def players(self):
-        if not self.started:
-            pick = firstplayer.playerPicker(self.people, 0)
-            self.playerNum = pick.firstPlayer()
-            self.player = self.people[self.playerNum]
-        else:
-            pick = firstplayer.playerPicker(self.people, self.playerNum)
-            self.playerNum = pick.nextPlayer()
-            self.player = self.people[self.playerNum]
-
     def start(self, channel):
         if not self.started:
             self.display.destroy()
-            self.players()
+            pick = firstplayer.playerPicker(self.people, 0)
+            self.playerNum = pick.firstPlayer()
+            self.player = self.people[self.playerNum]
             self.display1 = Label(self.master, text=(self.player + ', You Go First!'), font=("Arial", 25))
             self.display1.place(relx=.5, rely=.5, anchor=CENTER)
             self.started = not self.started
@@ -60,6 +52,9 @@ class Timer:
             else:
                 #self.timertext.set(5)
                 #root.update()
+                pick = firstplayer.playerPicker(self.people, self.playerNum)
+                self.playerNum = pick.nextPlayer()
+                self.player = self.people[self.playerNum]
                 self.timeit = not self.timeit
         else:
             self.display2.destroy()
@@ -71,6 +66,9 @@ class Timer:
             #wait_event.setup()
             wait_event.wait()
             self.display4.destroy()
+            pick = firstplayer.playerPicker(self.people, self.playerNum)
+            self.playerNum = pick.nextPlayer()
+            self.player = self.people[self.playerNum]
             self.timeit = not self.timeit
             #self.start(12)
 
