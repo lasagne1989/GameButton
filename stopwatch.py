@@ -20,18 +20,27 @@ class Timer:
         self.people = ['Gordon', 'Claire', 'Emma', 'Steve']
         self.playerCount = len(self.people)
 
-    def start(self, channel):
+    def players(self):
         if not self.started:
-            self.display.destroy()
             pick = firstplayer.playerPicker(self.people, 0)
             self.playerNum = pick.firstPlayer()
             self.player = self.people[self.playerNum]
+        else:
+            pick = firstplayer.playerPicker(self.people, self.playerNum)
+            self.playerNum = pick.nextPlayer()
+            self.player = self.people[self.playerNum]
+
+    def start(self, channel):
+        if not self.started:
+            self.display.destroy()
+            self.players()
             self.display1 = Label(self.master, text=(self.player + ', You Go First!'), font=("Arial", 25))
             self.display1.place(relx=.5, rely=.5, anchor=CENTER)
             self.started = not self.started
         else:
             self.timeit = not self.timeit
             self.display1.destroy()
+            self.display4.destroy()
             self.timertext = DoubleVar()
             self.timertext.set(5 + 1)
             self.display2 = Label(root, text=self.player, font=("Arial", 25))
@@ -40,36 +49,28 @@ class Timer:
             self.display3.place(relx=.5, rely=.5, anchor=N)
             self.increment_timer()
 
-    #def player(self):
-
 
     def increment_timer(self):
         ctr = int(self.timertext.get())
         if ctr > 0:
             self.timertext.set(ctr - 1)
             if self.timeit:
-                root.update()
+                self.master.update()
                 self.master.after(1000, self.increment_timer)
             else:
-                pick = firstplayer.playerPicker(self.people, self.playerNum)
-                self.playerNum = pick.nextPlayer()
-                self.player = self.people[self.playerNum]
-                self.timertext.set(5)
-                root.update()
+                #self.timertext.set(5)
+                #root.update()
                 self.timeit = not self.timeit
         else:
+            self.display2.destroy()
             self.display3.destroy()
-            self.display4 = Label(root, text="You Fucked It!", font=("Arial", 25))
+            self.display4 = Label(root, text=self.player + "You Fucked It!", font=("Arial", 25))
             self.display4.place(relx=.5, rely=.5, anchor=N)
             root.update()
-            wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, 0)
-            wait_event.setup()
-            wait_event.wait()
-            self.display2.destroy()
-            self.display4.destroy()
-            pick = firstplayer.playerPicker(self.people, self.playerNum)
-            self.playerNum = pick.nextPlayer()
-            self.player = self.people[self.playerNum]
+            #wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, 0)
+            #wait_event.setup()
+            #wait_event.wait()
+            #self.display4.destroy()
             self.timeit = not self.timeit
             #self.start(12)
 
