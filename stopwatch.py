@@ -39,7 +39,6 @@ class Timer:
             self.display2.place(relx=.5, rely=.5, anchor=S)
             self.display3 = Label(root, textvariable=self.timertext, font=("Arial", 25))
             self.display3.place(relx=.5, rely=.5, anchor=N)
-            self.master.update()
             self.increment_timer()
 
 
@@ -56,7 +55,7 @@ class Timer:
                 pick = firstplayer.playerPicker(self.people, self.playerNum)
                 self.playerNum = pick.nextPlayer()
                 self.player = self.people[self.playerNum]
-                #self.display2.destroy()
+                self.display2.destroy()
                 self.timeit = not self.timeit
         else:
             self.display3.destroy()
