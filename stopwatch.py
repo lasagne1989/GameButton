@@ -44,8 +44,19 @@ class Timer:
             self.increment_timer()
         else:
             self.timeit = not self.timeit
+            self.firstrun = not self.firstrun
+            pick = firstplayer.playerPicker(self.people, self.playerNum)
+            self.playerNum = pick.nextPlayer()
+            self.player = self.people[self.playerNum]
+            self.display1.destroy()
+            self.display2.destroy()
+            self.display3.destroy()
             self.timertext = DoubleVar()
             self.timertext.set(5 + 1)
+            self.display2 = Label(root, text=self.player, font=("Arial", 25))
+            self.display2.place(relx=.5, rely=.5, anchor=S)
+            self.display3 = Label(root, textvariable=self.timertext, font=("Arial", 25))
+            self.display3.place(relx=.5, rely=.5, anchor=N)
             self.increment_timer()
 
     def increment_timer(self):
@@ -58,9 +69,9 @@ class Timer:
             else:
                 #self.timertext.set(5)
                 #root.update()
-                pick = firstplayer.playerPicker(self.people, self.playerNum)
-                self.playerNum = pick.nextPlayer()
-                self.player = self.people[self.playerNum]
+                #pick = firstplayer.playerPicker(self.people, self.playerNum)
+                #self.playerNum = pick.nextPlayer()
+                #self.player = self.people[self.playerNum]
                 self.timeit = not self.timeit
         else:
             self.display3.destroy()
