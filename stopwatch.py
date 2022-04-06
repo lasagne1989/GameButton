@@ -16,19 +16,33 @@ class Timer:
         reg_event.setup()
         reg_event.event()
         self.timeit = False
-        self.started = False
+        self.press_count = 0
         self.people = ['Gordon', 'Claire', 'Emma', 'Steve']
         self.playerCount = len(self.people)
 
     def start(self, channel):
-        if not self.started:
+        if self.press_count == 0:
             self.display.destroy()
             pick = firstplayer.playerPicker(self.people, 0)
             self.playerNum = pick.firstPlayer()
             self.player = self.people[self.playerNum]
             self.display1 = Label(self.master, text=(self.player + ', You Go First!'), font=("Arial", 25))
             self.display1.place(relx=.5, rely=.5, anchor=CENTER)
-            self.started = not self.started
+            self.press_count += 1
+            print(self.press_count)
+        elif self.press_count == 1:
+            self.timeit = not self.timeit
+            self.display1.destroy()
+            #self.display4.destroy()
+            self.timertext = DoubleVar()
+            self.timertext.set(5 + 1)
+            self.display2 = Label(root, text=self.player, font=("Arial", 25))
+            self.display2.place(relx=.5, rely=.5, anchor=S)
+            self.display3 = Label(root, textvariable=self.timertext, font=("Arial", 25))
+            self.display3.place(relx=.5, rely=.5, anchor=N)
+            self.increment_timer()
+            self.press_count += 1
+            print(self.press_count)
         else:
             self.timeit = not self.timeit
             self.display1.destroy()
@@ -40,7 +54,8 @@ class Timer:
             self.display3 = Label(root, textvariable=self.timertext, font=("Arial", 25))
             self.display3.place(relx=.5, rely=.5, anchor=N)
             self.increment_timer()
-
+            self.press_count += 1
+            print(self.press_count)
 
     def increment_timer(self):
         ctr = int(self.timertext.get())
