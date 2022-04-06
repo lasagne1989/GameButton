@@ -30,7 +30,7 @@ class Timer:
             self.display1.place(relx=.5, rely=.5, anchor=CENTER)
             self.started = not self.started
         else:
-            self.timeit = not self.timeit
+            #self.timeit = not self.timeit
             self.display1.destroy()
             #self.display4.destroy()
             self.timertext = DoubleVar()
@@ -55,7 +55,7 @@ class Timer:
                 pick = firstplayer.playerPicker(self.people, self.playerNum)
                 self.playerNum = pick.nextPlayer()
                 self.player = self.people[self.playerNum]
-                #self.timeit = not self.timeit
+                self.timeit = not self.timeit
         else:
             self.display3.destroy()
             self.display4 = Label(root, text="You Fucked It!", font=("Arial", 25))
