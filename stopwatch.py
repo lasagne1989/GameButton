@@ -17,6 +17,7 @@ class Timer:
         reg_event.event()
         self.timeit = False
         self.started = False
+        self.firstrun= True
         self.people = ['Gordon', 'Claire', 'Emma', 'Steve']
         self.playerCount = len(self.people)
 
@@ -29,8 +30,9 @@ class Timer:
             self.display1 = Label(self.master, text=(self.player + ', You Go First!'), font=("Arial", 25))
             self.display1.place(relx=.5, rely=.5, anchor=CENTER)
             self.started = not self.started
-        else:
+        elif self.firstrun:
             self.timeit = not self.timeit
+            self.firstrun = not self.firstrun
             self.display1.destroy()
             #self.display4.destroy()
             self.timertext = DoubleVar()
@@ -40,7 +42,11 @@ class Timer:
             self.display3 = Label(root, textvariable=self.timertext, font=("Arial", 25))
             self.display3.place(relx=.5, rely=.5, anchor=N)
             self.increment_timer()
-
+        else:
+            self.timeit = not self.timeit
+            self.timertext = DoubleVar()
+            self.timertext.set(5 + 1)
+            self.increment_timer()
 
     def increment_timer(self):
         ctr = int(self.timertext.get())
@@ -67,6 +73,7 @@ class Timer:
             self.display2.destroy()
             self.display4.destroy()
             self.timeit = not self.timeit
+            self.firstrun = not self.firstrun
             #self.start(12)
 
 app = Timer(root)
