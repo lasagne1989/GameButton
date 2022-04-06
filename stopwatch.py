@@ -68,7 +68,7 @@ class Timer:
             self.display4.place(relx=.5, rely=.5, anchor=N)
             self.master.update()
             wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, 0)
-            wait_event.setup()
+            #wait_event.setup()
             wait_event.wait()
             self.display4.destroy()
             self.firstrun = not self.firstrun
