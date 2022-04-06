@@ -40,7 +40,7 @@ class Timer:
             self.display3.place(relx=.5, rely=.5, anchor=N)
             self.increment_timer()
 
-    def player(self):
+    #def player(self):
 
 
     def increment_timer(self):
