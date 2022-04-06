@@ -53,6 +53,7 @@ class Timer:
             else:
                 self.timertext = DoubleVar()
                 self.timertext.set(5 + 1)
+                self.increment_timer()
 
 
     def increment_timer(self):
@@ -73,7 +74,7 @@ class Timer:
             self.display4.destroy()
             self.firstrun = not self.firstrun
             self.players()
-            #self.start(12)
+            self.start(12)
 
 app = Timer(root)
 root.mainloop()
