@@ -40,7 +40,6 @@ class Timer:
         else:
             self.timeit = not self.timeit
             self.display1.destroy()
-            self.display4.destroy()
             self.timertext = DoubleVar()
             self.timertext.set(5 + 1)
             self.display2 = Label(root, text=self.player, font=("Arial", 25))
@@ -67,10 +66,10 @@ class Timer:
             self.display4 = Label(root, text=self.player + "You Fucked It!", font=("Arial", 25))
             self.display4.place(relx=.5, rely=.5, anchor=N)
             root.update()
-            #wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, 0)
-            #wait_event.setup()
-            #wait_event.wait()
-            #self.display4.destroy()
+            wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, 0)
+            wait_event.setup()
+            wait_event.wait()
+            self.display4.destroy()
             self.timeit = not self.timeit
             #self.start(12)
 
