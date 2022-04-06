@@ -17,6 +17,7 @@ class Timer:
         reg_event.event()
         self.timeit = False
         self.started = False
+        self.firstrun=True
         self.people = ['Gordon', 'Claire', 'Emma', 'Steve']
         self.playerCount = len(self.people)
 
@@ -38,39 +39,40 @@ class Timer:
             self.display1.place(relx=.5, rely=.5, anchor=CENTER)
             self.started = not self.started
         else:
-            self.timeit = not self.timeit
-            self.display1.destroy()
-            self.timertext = DoubleVar()
-            self.timertext.set(5 + 1)
-            self.display2 = Label(root, text=self.player, font=("Arial", 25))
-            self.display2.place(relx=.5, rely=.5, anchor=S)
-            self.display3 = Label(root, textvariable=self.timertext, font=("Arial", 25))
-            self.display3.place(relx=.5, rely=.5, anchor=N)
-            self.increment_timer()
+            if self.firstrun:
+                self.timeit = not self.timeit
+                self.display1.destroy()
+                self.timertext = DoubleVar()
+                self.timertext.set(5 + 1)
+                self.display2 = Label(root, text=self.player, font=("Arial", 25))
+                self.display2.place(relx=.5, rely=.5, anchor=S)
+                self.display3 = Label(root, textvariable=self.timertext, font=("Arial", 25))
+                self.display3.place(relx=.5, rely=.5, anchor=N)
+                self.firstrun = not self.firstrun
+                self.increment_timer()
+            else:
+                self.timertext = DoubleVar()
+                self.timertext.set(5 + 1)
 
 
     def increment_timer(self):
         ctr = int(self.timertext.get())
         if ctr > 0:
             self.timertext.set(ctr - 1)
-            if self.timeit:
-                self.master.update()
-                self.master.after(1000, self.increment_timer)
-            else:
-                #self.timertext.set(5)
-                #root.update()
-                self.timeit = not self.timeit
+            self.master.update()
+            self.master.after(1000, self.increment_timer)
         else:
             self.display2.destroy()
             self.display3.destroy()
-            self.display4 = Label(root, text=self.player + "You Fucked It!", font=("Arial", 25))
+            self.display4 = Label(root, text=self.player + ", You Fucked It!", font=("Arial", 25))
             self.display4.place(relx=.5, rely=.5, anchor=N)
-            root.update()
+            #root.update()
             wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, 0)
             wait_event.setup()
             wait_event.wait()
             self.display4.destroy()
-            self.timeit = not self.timeit
+            self.firstrun = not self.firstrun
+            self.players()
             #self.start(12)
 
 app = Timer(root)
