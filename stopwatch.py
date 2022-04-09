@@ -16,6 +16,7 @@ class Timer:
         self.display1.place(relx=.5, rely=.5, anchor=S)
         self.display2 = Label(master, font=("Arial", 25))
         self.display2.place(relx=.5, rely=.5, anchor=N)
+        self.display['text'] = 'Game On!'
         reg_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, self.start)
         reg_event.setup()
         reg_event.event()
@@ -29,6 +30,7 @@ class Timer:
             pick = firstplayer.playerPicker(self.people, 0)
             self.playerNum = pick.firstPlayer()
             self.player = self.people[self.playerNum]
+            self.display['text'] = self.player + ', You Go First!'
             self.press_count += 1
             print(self.press_count)
         elif self.press_count == 1:
@@ -36,8 +38,8 @@ class Timer:
             self.display.destroy()
             self.timertext = DoubleVar()
             self.timertext.set(5 + 1)
-            text=self.player
-            textvariable=self.timertext
+            self.display1['text'] = self.player
+            self.display2['text'] = self.timertext
             self.increment_timer()
             self.press_count += 1
             print(self.press_count)
@@ -45,8 +47,8 @@ class Timer:
             self.timeit = not self.timeit
             self.timertext = DoubleVar()
             self.timertext.set(5 + 1)
-            text=self.player
-            textvariable=self.timertext
+            self.display1['text'] = self.player
+            self.display2['text'] = self.timertext
             self.increment_timer()
             self.press_count += 1
             print(self.press_count)
@@ -66,7 +68,7 @@ class Timer:
                 self.player = self.people[self.playerNum]
                 self.timeit = not self.timeit
         else:
-            self.display3 = text="You Fucked It!"
+            self.display2['text'] = 'You Fucked It!'
             root.update()
             wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, 0)
             #wait_event.setup()
