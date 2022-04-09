@@ -36,32 +36,32 @@ class Timer:
         elif self.press_count == 1:
             self.timeit = not self.timeit
             self.display.destroy()
-            self.timertext = DoubleVar()
-            self.timertext.set(5 + 1)
+            self.timer_text = DoubleVar()
+            self.timer_text.set(5 + 1)
             self.display1['text'] = self.player
-            self.display2['text'] = self.timertext
+            self.display2['text'] = self.timer_text
             self.increment_timer()
             self.press_count += 1
             print(self.press_count)
         else:
             self.timeit = not self.timeit
-            self.timertext = DoubleVar()
-            self.timertext.set(5 + 1)
+            self.timer_text = DoubleVar()
+            self.timer_text.set(5 + 1)
             self.display1['text'] = self.player
-            self.display2['text'] = self.timertext
+            self.display2['text'] = self.timer_text
             self.increment_timer()
             self.press_count += 1
             print(self.press_count)
 
     def increment_timer(self):
-        ctr = int(self.timertext.get())
+        ctr = int(self.timer_text.get())
         if ctr > 0:
-            self.timertext.set(ctr - 1)
+            self.timer_text.set(ctr - 1)
             if self.timeit:
                 self.master.update()
                 self.master.after(1000, self.increment_timer)
             else:
-                #self.timertext.set(5)
+                #self.timer_text.set(5)
                 #root.update()
                 pick = firstplayer.playerPicker(self.people, self.playerNum)
                 self.playerNum = pick.nextPlayer()
@@ -76,6 +76,6 @@ class Timer:
             self.timeit = not self.timeit
             #self.start(12)
 
+
 app = Timer(root)
 root.mainloop()
-
