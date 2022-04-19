@@ -1,22 +1,22 @@
 import press
 import firstplayer
+import itertools
 from tkinter import *
 import RPi.GPIO as GPIO
 
 root = Tk()
 
-
 class Timer:
     def __init__(self, master):
         self.master = master
         root.geometry("320x240")
-        self.display = Label(master, font=("Arial", 25))
-        self.display.place(relx=.5, rely=.5, anchor=CENTER)
         self.display1 = Label(master, font=("Arial", 25))
         self.display1.place(relx=.5, rely=.5, anchor=S)
         self.display2 = Label(master, font=("Arial", 25))
         self.display2.place(relx=.5, rely=.5, anchor=N)
-        self.display['text'] = 'Game On!'
+        self.display = Label(master, font=("Arial", 25))
+        # self.display.place(relx=.5, rely=.5, anchor=CENTER)
+        self.display1['text'] = 'Game On!'
         reg_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, self.start)
         reg_event.setup()
         reg_event.event()
@@ -33,25 +33,25 @@ class Timer:
             self.display['text'] = self.player + ', You Go First!'
             self.press_count += 1
             print(self.press_count)
-        elif self.press_count == 1:
+        else: # self.press_count == 1:
             self.timeit = not self.timeit
-            self.display.destroy()
+            # self.display.destroy()
             self.timer_text = DoubleVar()
             self.timer_text.set(5 + 1)
             self.display1['text'] = self.player
-            self.display2['text'] = self.timer_text
+            self.display2['textvariable'] = self.timer_text
             self.increment_timer()
             self.press_count += 1
             print(self.press_count)
-        else:
-            self.timeit = not self.timeit
-            self.timer_text = DoubleVar()
-            self.timer_text.set(5 + 1)
-            self.display1['text'] = self.player
-            self.display2['text'] = self.timer_text
-            self.increment_timer()
-            self.press_count += 1
-            print(self.press_count)
+        # else:
+        #    self.timeit = not self.timeit
+        #    self.timer_text = DoubleVar()
+        #    self.timer_text.set(5 + 1)
+        #    self.display1['text'] = self.player
+        #    self.display2['text'] = self.timer_text
+        #    self.increment_timer()
+        #    self.press_count += 1
+        #    print(self.press_count)
 
     def increment_timer(self):
         ctr = int(self.timer_text.get())
@@ -70,7 +70,7 @@ class Timer:
         else:
             self.display2['text'] = 'You Fucked It!'
             root.update()
-            wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, 0)
+            wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, self.start)
             #wait_event.setup()
             wait_event.wait()
             self.timeit = not self.timeit
