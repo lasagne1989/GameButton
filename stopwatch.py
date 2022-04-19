@@ -1,5 +1,6 @@
 import press
 import firstplayer
+import itertools
 from tkinter import *
 import RPi.GPIO as GPIO
 
