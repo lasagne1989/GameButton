@@ -53,7 +53,7 @@ class Timer:
             self.timer_text.set(5 + 1)
             self.display1['text'] = self.player
             self.display2['textvariable'] = self.timer_text
-            self.increment_timer()
+            # self.increment_timer()
             self.press_count += 1
             print(self.press_count)
 
@@ -65,11 +65,14 @@ class Timer:
             self.master.after(1000, self.increment_timer)
         else:
             self.display1['text'] = self.player + ', You Fucked It!'
-            root.update()
+            #root.update()
             wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, self.start)
             wait_event.setup()
             wait_event.wait()
-            #self.start(10)
+            self.player = next(self.next_players)
+            self.press_count = 1
+            print(self.press_count)
+            self.start(10)
 
 
 app = Timer(root)
