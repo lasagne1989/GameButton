@@ -48,7 +48,6 @@ class Timer:
             self.display2['textvariable'] = self.timer_text
             self.increment_timer()
             self.press_count += 1
-            print(self.press_count)
         # Restart the countdown and get the next player
         else:
             self.player = next(self.next_players)
