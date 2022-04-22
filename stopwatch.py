@@ -30,7 +30,7 @@ class Timer:
             pick = firstplayer.playerPicker(self.people, 0)
             self.playerNum = pick.firstPlayer()
             self.player = self.people[self.playerNum]
-            self.display1['text'] = self.player + "You Go First!"
+            self.display1['text'] = self.player + ", You Go First!"
             # self.display2['text'] = "You Go First!"
             self.press_count += 1
             print(self.press_count)
@@ -69,13 +69,13 @@ class Timer:
                 self.player = self.people[self.playerNum]
                 self.timeit = not self.timeit
         else:
-            self.display1['text'] = self.player + 'You Fucked It!'
+            self.display1['text'] = self.player + ', You Fucked It!'
             root.update()
             wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, self.start)
             #wait_event.setup()
             wait_event.wait()
             self.timeit = not self.timeit
-            #self.start(12)
+            self.start(12)
 
 
 app = Timer(root)
