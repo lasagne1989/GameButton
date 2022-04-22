@@ -65,7 +65,7 @@ class Timer:
             self.master.after(1000, self.increment_timer)
         else:
             self.display1['text'] = self.player + ', You Fucked It!'
-            #root.update()
+            root.update()
             wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, self.start)
             wait_event.setup()
             wait_event.wait()
