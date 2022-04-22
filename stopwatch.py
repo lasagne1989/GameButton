@@ -14,7 +14,7 @@ class Timer:
         self.display1.place(relx=.5, rely=.5, anchor=S)
         self.display2 = Label(master, font=("Arial", 25))
         self.display2.place(relx=.5, rely=.5, anchor=N)
-        self.display = Label(master, font=("Arial", 25))
+        #self.display = Label(master, font=("Arial", 25))
         # self.display.place(relx=.5, rely=.5, anchor=CENTER)
         self.display1['text'] = 'Game On!'
         reg_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, self.start)
@@ -30,7 +30,8 @@ class Timer:
             pick = firstplayer.playerPicker(self.people, 0)
             self.playerNum = pick.firstPlayer()
             self.player = self.people[self.playerNum]
-            self.display['text'] = self.player + ', You Go First!'
+            self.display1['text'] = self.player
+            self.display2['textvariable'] = "You Go First!"
             self.press_count += 1
             print(self.press_count)
         else: # self.press_count == 1:
