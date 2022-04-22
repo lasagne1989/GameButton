@@ -72,7 +72,7 @@ class Timer:
             self.player = next(self.next_players)
             self.press_count = 1
             print(self.press_count)
-            self.start(10)
+            # self.start(10)
 
 
 app = Timer(root)
