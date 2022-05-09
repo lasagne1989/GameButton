@@ -17,9 +17,9 @@ class Timer:
         root.geometry("320x240")
         root.attributes('-fullscreen', True)
         root['bg']='grey9'
-        self.display1 = Label(master, fg='white', font=("-*-lucidatypewriter-medium-r-*-*-*-140-*-*-*-*-*-*", 23))
+        self.display1 = Label(master, fg='white', bg='grey9', font=("Ariel", 24))
         self.display1.place(relx=.5, rely=.5, anchor=S)
-        self.display2 = Label(master, fg='white', font=("-*-lucidatypewriter-medium-r-*-*-*-140-*-*-*-*-*-*", 23))
+        self.display2 = Label(master, fg='white', bg='grey9', font=("Ariel", 24))
         self.display2.place(relx=.5, rely=.5, anchor=N)
         self.display1['text'] = 'Game On!'
         # Set up main button press
