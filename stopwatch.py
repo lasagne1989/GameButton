@@ -12,7 +12,7 @@ root = Tk()
 class Timer:
     def __init__(self, master):
         self.master = master
-        # Set up screen and labels
+        # Set up screen
         root.geometry("320x240")
         root.attributes('-fullscreen', True)
         root['bg']='grey9'
