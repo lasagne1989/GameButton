@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#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
 
 import press
 import random
@@ -12,11 +13,13 @@ root = Tk()
 class Timer:
     def __init__(self, master):
         self.master = master
-        # Set up screen and labels
+        # Set up screen
         root.geometry("320x240")
-        self.display1 = Label(master, font=("Arial", 25))
+        root.attributes('-fullscreen', True)
+        root['bg']='grey9'
+        self.display1 = Label(master, fg='white', font=("-*-lucidatypewriter-medium-r-*-*-*-140-*-*-*-*-*-*", 23))
         self.display1.place(relx=.5, rely=.5, anchor=S)
-        self.display2 = Label(master, font=("Arial", 25))
+        self.display2 = Label(master, fg='white', font=("-*-lucidatypewriter-medium-r-*-*-*-140-*-*-*-*-*-*", 23))
         self.display2.place(relx=.5, rely=.5, anchor=N)
         self.display1['text'] = 'Game On!'
         # Set up main button press
