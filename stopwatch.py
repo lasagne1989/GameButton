@@ -17,9 +17,10 @@ class Timer:
         root.geometry("320x240")
         root.attributes('-fullscreen', True)
         root['bg']='grey9'
-        self.display1 = Label(master, fg='white', bg='grey9', font=("Ariel", 24))
+        self.fontStyle = tkFont.Font(family="Ariel", size=24)
+        self.display1 = Label(master, fg='white', bg='grey9', font=self.fontStyle)
         self.display1.place(relx=.5, rely=.5, anchor=S)
-        self.display2 = Label(master, fg='white', bg='grey9', font=("Ariel", 24))
+        self.display2 = Label(master, fg='white', bg='grey9', font=("Ariel", 35))
         self.display2.place(relx=.5, rely=.5, anchor=N)
         self.display1['text'] = 'Game On!'
         # Set up main button press
@@ -47,6 +48,7 @@ class Timer:
             self.press_count += 1
         elif self.press_count == 1:
             # Start the countdown for first player
+            self.fontStyle = tkFont.Font(family="Ariel", size=35)
             self.timer_text = DoubleVar()
             self.timer_text.set(self.time_limit + 1)
             self.display1['text'] = self.player
@@ -71,6 +73,7 @@ class Timer:
             self.master.after(1000, self.increment_timer)
         # on zero give shit to the loser
         else:
+            self.fontStyle = tkFont.Font(family="Ariel", size=24)
             self.display1['text'] = self.player + ', You Fucked It!'
             root.update()
             # wait for the button to be pressed again
