@@ -17,8 +17,7 @@ class Timer:
         root.geometry("320x240")
         root.attributes('-fullscreen', True)
         root['bg']='grey9'
-        self.fontStyle = tkFont.Font(family="Ariel", size=24)
-        self.display1 = Label(master, fg='white', bg='grey9', font=self.fontStyle)
+        self.display1 = Label(master, fg='white', bg='grey9', font=("Ariel", 24))
         self.display1.place(relx=.5, rely=.5, anchor=S)
         self.display2 = Label(master, fg='white', bg='grey9', font=("Ariel", 35))
         self.display2.place(relx=.5, rely=.5, anchor=N)
@@ -30,7 +29,7 @@ class Timer:
         # Press count variable
         self.time_limit = 5
         self.press_count = 0
-        # Pick fisrt player and set up cycle
+        # Pick first player and set up cycle
         people = ['Gordon', 'Claire', 'Emma', 'Steve']
         player_count = len(people)
         player_num = random.randint(0, player_count - 1)
@@ -48,7 +47,6 @@ class Timer:
             self.press_count += 1
         elif self.press_count == 1:
             # Start the countdown for first player
-            self.fontStyle = tkFont.Font(family="Ariel", size=35)
             self.timer_text = DoubleVar()
             self.timer_text.set(self.time_limit + 1)
             self.display1['text'] = self.player
@@ -73,8 +71,7 @@ class Timer:
             self.master.after(1000, self.increment_timer)
         # on zero give shit to the loser
         else:
-            self.fontStyle = tkFont.Font(family="Ariel", size=24)
-            self.display1['text'] = self.player + ', You Fucked It!'
+            self.display1['text'] = self.player + ', You Dumb Bitch!'
             root.update()
             # wait for the button to be pressed again
             wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, self.start)
