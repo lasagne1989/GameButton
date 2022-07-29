@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import random
 import subprocess
 from pathlib import *
