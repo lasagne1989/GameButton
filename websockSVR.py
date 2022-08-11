@@ -2,19 +2,25 @@
 
 import asyncio
 import websockets
+import threading
 
-async def hello(websocket):
-    name = await websocket.recv()
-    print(f"<<< {name}")
+def sockSVR():
+    async def handler(websocket):
+        name = await websocket.recv()
+        print(f"<<< {name}")
 
-    greeting = f"Hello {name}!"
+        greeting = f"Hello {name}!"
 
-    await websocket.send(greeting)
-    print(f">>> {greeting}")
+        await websocket.send(greeting)
+        print(f">>> {greeting}")
+    
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    
+    start_server= websockets.serve(handler, "localhost", 8765)
+    loop.run_until_complete(start_server)
+    loop.run_forever()
 
-async def main():
-    async with websockets.serve(hello, "localhost", 8765):
-        await asyncio.Future()  # run forever
 
-if __name__ == "__main__":
-    asyncio.run(main())
+#if __name__ == "__main__":
+#    asyncio.run(sockSVR())
