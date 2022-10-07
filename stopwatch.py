@@ -3,6 +3,7 @@
 
 #py files
 import press
+import myIP
 #libraries
 import json
 import websockets
@@ -13,6 +14,8 @@ import itertools
 from tkinter import *
 from threading import *
 import RPi.GPIO as GPIO
+
+from GameButton import sounds
 
 root = Tk()
 
@@ -78,41 +81,46 @@ class Timer:
             self.press_count += 1
 
     def increment_timer(self):
-        ctr = int(self.timer_text.get())
+        self.ctr = int(self.timer_text.get())
         # countdown -1 second every second until we hit zero
-        if ctr > 0:
-            self.timer_text.set(ctr - 1)
+        if self.ctr > 0:
+            self.timer_text.set(self.ctr - 1)
             self.master.update()
             self.master.after(1000, self.increment_timer)
         # on zero give shit to the loser
         else:
             self.display1['text'] = self.player + ', You Dumb Bitch!'
             root.update()
+            #sounds.gimmeSomeBanter()
             # wait for the button to be pressed again
             wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, self.start)
             wait_event.wait()
-            # sends us back to the middle condition on start nut progresses us to the next player
+            # sends us back to the middle condition on start and progresses us to the next player
+            #Move these above wait?
             self.player = next(self.next_players)
             self.press_count = 1
     
     def sockSVR(self):
         async def handler(websocket):
             msg = await websocket.recv()
-            print(msg)
-            dict = json.loads(msg)
-            print(dict)
-            print(dict['time_limit'])
-            print(dict['players'])
-            self.time_limit = dict['time_limit']
-            self.players = dict['players']
-            #print(f"{self.players}")
-            start = f"start"
-            await websocket.send(start)
-            self.connection()
+            if msg == 'beep':
+                self.start()
+            else:
+                #print(msg)
+                dict = json.loads(msg)
+                #print(dict)
+                #print(dict['time_limit'])
+                #print(dict['players'])
+                self.time_limit = dict['time_limit']
+                self.players = dict['players']
+                #print(f"{self.players}")
+                start = f"start"
+                await websocket.send(start)
+                self.connection()
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
     
-        start_server= websockets.serve(handler, "192.168.0.26", 8765)
+        start_server= websockets.serve(handler, myIP.IPAddr, 8765)
         loop.run_until_complete(start_server)
         loop.run_forever()
 
