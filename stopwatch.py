@@ -15,7 +15,7 @@ from tkinter import *
 from threading import *
 import RPi.GPIO as GPIO
 
-from GameButton import sounds
+#from GameButton import sounds
 
 root = Tk()
 
