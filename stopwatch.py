@@ -27,7 +27,7 @@ class Timer:
         #root.geometry("320x240")
         root.attributes('-fullscreen', True)
         root['bg']='grey9'
-        self.display1 = Label(master, fg='white', bg='grey9', font=("Ariel", 20))
+        self.display1 = Label(master, fg='white', bg='grey9', font=("Ariel", 18))
         self.display1.place(relx=.5, rely=.5, anchor=S)
         self.display2 = Label(master, fg='white', bg='grey9', font=("Ariel", 35))
         self.display2.place(relx=.5, rely=.5, anchor=N)
@@ -103,20 +103,20 @@ class Timer:
     def sockSVR(self):
         async def handler(websocket):
             msg = await websocket.recv()
-            if msg == 'beep':
-                self.start()
-            else:
-                #print(msg)
-                dict = json.loads(msg)
-                #print(dict)
-                #print(dict['time_limit'])
-                #print(dict['players'])
-                self.time_limit = dict['time_limit']
-                self.players = dict['players']
-                #print(f"{self.players}")
-                start = f"start"
-                await websocket.send(start)
-                self.connection()
+            #if msg == 'beep':
+            #    self.start()
+            #else:
+            #print(msg)
+            dict = json.loads(msg)
+            #print(dict)
+            #print(dict['time_limit'])
+            #print(dict['players'])
+            self.time_limit = dict['time_limit']
+            self.players = dict['players']
+            #print(f"{self.players}")
+            start = f"start"
+            await websocket.send(start)
+            self.connection()
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
 
