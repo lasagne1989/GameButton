@@ -91,6 +91,7 @@ class Timer:
         else:
             self.display1['text'] = self.player + ', You Dumb Bitch!'
             root.update()
+            self.press_count = 1
             #sounds.gimmeSomeBanter()
             # wait for the button to be pressed again
             wait_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, self.start)
