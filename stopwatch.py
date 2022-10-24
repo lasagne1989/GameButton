@@ -24,14 +24,15 @@ class Timer:
     def __init__(self, master):
         self.master = master
         # Set up screen
+        root.config(cursor="none")
         #root.geometry("320x240")
         root.attributes('-fullscreen', True)
         root['bg']='grey9'
-        self.display1 = Label(master, fg='white', bg='grey9', font=("Ariel", 18))
+        self.display1 = Label(master, fg='white', bg='grey9', font=("Ariel", 24))
         self.display1.place(relx=.5, rely=.5, anchor=S)
         self.display2 = Label(master, fg='white', bg='grey9', font=("Ariel", 35))
         self.display2.place(relx=.5, rely=.5, anchor=N)
-        self.display1['text'] = 'Wait for Phone Connection'
+        self.display1['text'] = 'Connect Phone'
         # Press count variable
         self.time_limit = 5
         self.press_count = 0
@@ -42,7 +43,7 @@ class Timer:
         self.player_cycle = []
     
     def connection(self):
-        self.display1['text'] = 'Connected and Ready, Press the Button'
+        self.display1['text'] = 'Press the Button'
         # Set up main button press
         reg_event = press.Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, self.start)
         reg_event.setup()
