@@ -28,7 +28,7 @@ class Timer:
         #root.geometry("320x240")
         root.attributes('-fullscreen', True)
         root['bg']='grey9'
-        self.display1 = Label(master, fg='white', bg='grey9', font=("Ariel", 24))
+        self.display1 = Label(master, fg='white', bg='grey9', font=("Ariel", 24), wraplength=318)
         self.display1.place(relx=.5, rely=.5, anchor=S)
         self.display2 = Label(master, fg='white', bg='grey9', font=("Ariel", 35))
         self.display2.place(relx=.5, rely=.5, anchor=N)
