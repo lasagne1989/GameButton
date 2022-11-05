@@ -3,5 +3,6 @@
 import socket
 
 hostname = socket.gethostname()
-IPAddr = socket.gethostbyname(hostname)
+hnlocal = f"{hostname}.local"
+IPAddr = socket.gethostbyname(hnlocal)
 print(IPAddr)

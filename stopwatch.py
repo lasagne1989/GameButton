@@ -122,8 +122,8 @@ class Timer:
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
 
-        start_server = websockets.serve(handler, "192.168.0.29", 8765)
-        #start_server= websockets.serve(handler, "%s"%myIP.IPAddr, 8765)
+        #start_server = websockets.serve(handler, "192.168.0.29", 8765)
+        start_server= websockets.serve(handler, "%s"%myIP.IPAddr, 8765)
         loop.run_until_complete(start_server)
         loop.run_forever()
 
