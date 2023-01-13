@@ -9,7 +9,6 @@ import json
 import websockets
 import asyncio
 import random
-import subprocess
 import itertools
 from tkinter import *
 from threading import *
