@@ -32,7 +32,7 @@ class Timer:
         self.display2 = Label(master, fg='white', bg='grey9', font=("Ariel", 35))
         self.display2.place(relx=.5, rely=.5, anchor=N)
         self.display1['text'] = 'Connect Phone'
-        # Press count variable
+        # Press count variabe
         self.time_limit = 5
         self.press_count = 0
         # Start Websocket
