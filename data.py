@@ -1,7 +1,6 @@
+#!/usr/bin/env python
 from json import loads
 
-
-# from dataclasses import dataclass
 
 def Data(msg):
     dict = loads(msg)

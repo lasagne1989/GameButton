@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from websocket import sockSVR
 from data import Data
 from standard import Standard
