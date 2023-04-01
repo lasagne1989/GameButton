@@ -26,8 +26,8 @@ class GameButton:
         self.display1['text'] = 'Connect Phone'
         root.update()
         # Start Websocket
-        #self.sockSVR()
-        self.msg = '{"players":["Gordon", "Claire", "Steve", "Emma"], "time_limit": 3, "mode": "Standard", "dob": ["1989-08-31 00:00:00.000", "1991-07-24 00:00:00.000", "1991-07-03 00:00:00.000", "2023-03-18 00:00:00.000"]}'
+        self.sockSVR()
+        #self.msg = '{"players":["Gordon", "Claire", "Steve", "Emma"], "time_limit": 3, "mode": "Standard", "dob": ["1989-08-31 00:00:00.000", "1991-07-24 00:00:00.000", "1991-07-03 00:00:00.000", "2023-03-18 00:00:00.000"]}'
         # sleep(3)
         # procoss Data
         self.data()
