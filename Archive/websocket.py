@@ -17,7 +17,7 @@ def sockSVR():
 
     async def handler(websocket):
         global msg
-        msg = await websocket.recv()
+        self.msg = await websocket.recv()
         print(msg)
         start = f"start"
         await websocket.send(start)
@@ -27,7 +27,6 @@ def sockSVR():
     start_server = serve(handler, "%s" % ip_addr, 8765)
     loop.run_until_complete(start_server)
     loop.run_forever()
-    return msg
 
 
 if __name__ == "__main__":
