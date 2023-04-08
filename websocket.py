@@ -21,8 +21,7 @@ def sockSVR():
         print(msg)
         start = f"start"
         await websocket.send(start)
-        loop.close()
-        #loop.stop()
+        loop.stop()
 
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
