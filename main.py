@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+from GameButton.chess import Chess
 from websocket import sockSVR
 from data import Data
 from standard import Standard
@@ -32,10 +32,9 @@ class GameButton:
         self.time_limit = None
         self.mode = None
         # Start Websocket
-        self.sockSVR()
-        # self.msg = '{"players":["Gordon", "Claire", "Steve", "Emma"], "time_limit": 3, "mode": "Standard",
-        # "dob": ["1989-08-31 00:00:00.000", "1991-07-24 00:00:00.000", "1991-07-03 00:00:00.000", "2023-03-18
-        # 00:00:00.000"]}' sleep(3)
+        #self.sockSVR()
+        self.msg = '{"players":["Gordon", "Claire", "Steve", "Emma"], "time_limit": 3, "mode": "Chess","dob": ["1989-08-31 00:00:00.000", "1991-07-24 00:00:00.000", "1991-07-03 00:00:00.000", "2023-03-1800:00:00.000"]}'
+        # sleep(3)
         #Process data
         self.data()
         # Run game
@@ -57,6 +56,9 @@ class GameButton:
         if self.mode == "Nameless":
             root.destroy()
             Nameless(self.time_limit, master=None)
+        if self.mode == "Chess":
+            root.destroy()
+            Chess(self.time_limit, self.players, master=None)
 
 
 if __name__ == "__main__":
