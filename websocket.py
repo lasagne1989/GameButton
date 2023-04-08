@@ -17,16 +17,19 @@ def sockSVR():
 
     async def handler(websocket):
         global msg
-        self.msg = await websocket.recv()
+        msg = await websocket.recv()
         print(msg)
         start = f"start"
         await websocket.send(start)
+        loop.close()
+        #loop.stop()
 
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
     start_server = serve(handler, "%s" % ip_addr, 8765)
     loop.run_until_complete(start_server)
     loop.run_forever()
+    return msg
 
 
 if __name__ == "__main__":
