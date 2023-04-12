@@ -45,7 +45,7 @@ class GameButton:
     def pickMode(self):
         if self.mode == "Standard":
             root.destroy()
-            from standard import Standard
+            from standard import start_standard
             Standard(self.time_limit, self.players, master=None)
         if self.mode == "Nameless":
             root.destroy()
