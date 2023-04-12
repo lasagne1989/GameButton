@@ -6,16 +6,18 @@ from random import randint
 from itertools import cycle
 from tkinter import *
 
+root = Tk()
+
 
 class Standard:
     def __init__(self, time_limit, players, master):
         self.master = master
         #set up screen
-        Tk().config(cursor="none")
-        Tk().geometry("320x240")
+        root.config(cursor="none")
+        root.geometry("320x240")
         #root.attributes('-fullscreen', True)
-        Tk()['bg'] = 'grey9'
-        Tk().attributes("-topmost", True)
+        root['bg'] = 'grey9'
+        root.attributes("-topmost", True)
         #set up labels
         self.playing = Label(master, fg='white', bg='grey9', font=("Ariel", 32), wraplength=318)
         self.playing.place(relx=.5, rely=.5, anchor="s")
@@ -34,7 +36,7 @@ class Standard:
         #root.update()
         #select first player
         self.first_player()
-        self.player = self.player_cycle[2]
+        self.player = self.player_cycle[1]
         self.player_text.set(self.player)
         self.playing['textvariable'] = self.player_text
         self.playing['text'] = self.player
@@ -59,14 +61,14 @@ class Standard:
         while time_left != 0:
             # add button press to call restart()
             self.timer['textvariable'] = self.time_text
-            #root.update()
+            root.update()
             time_left -= 1
             self.time_text.set(time_left)
             print(time_left)
             sleep(1)
         self.time_text.set('You Dumb Bitch!!!')
         self.timer['textvariable'] = self.time_text
-        Tk().update()
+        root.update()
         print("You Dumb Bitch")
         self.restart()
 
@@ -85,5 +87,5 @@ class Standard:
 
 
 if __name__ == "__main__":
-    app = Standard(time_limit, players, master)
-    Tk().mainloop()
+    app = Standard(time_limit, players, root)
+    root.mainloop()
