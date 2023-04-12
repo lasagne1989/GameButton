@@ -61,7 +61,7 @@ class Standard:
         while time_left != 0:
             # add button press to call restart()
             self.timer['textvariable'] = self.time_text
-            root.update()
+            #root.update()
             time_left -= 1
             self.time_text.set(time_left)
             print(time_left)
