@@ -1,9 +1,6 @@
 #!/usr/bin/env python
-from chess import Chess
 from websocket import sockSVR
 from data import Data
-from standard import Standard
-from nameless import Nameless
 from tkinter import *
 
 root = Tk()
@@ -48,12 +45,15 @@ class GameButton:
     def pickMode(self):
         if self.mode == "Standard":
             root.destroy()
+            from standard import Standard
             Standard(self.time_limit, self.players, master=None)
         if self.mode == "Nameless":
             root.destroy()
+            from nameless import Nameless
             Nameless(self.time_limit, master=None)
         if self.mode == "Chess":
             root.destroy()
+            from chess import Chess
             Chess(self.time_limit, self.players, master=None)
 
 
