@@ -68,7 +68,7 @@ class Standard:
             sleep(1)
         self.time_text.set('You Dumb Bitch!!!')
         self.timer['textvariable'] = self.time_text
-        root.update()
+        #root.update()
         print("You Dumb Bitch")
         self.restart()
 
