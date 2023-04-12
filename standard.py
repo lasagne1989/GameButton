@@ -46,7 +46,7 @@ class Standard:
         self.playing['textvariable'] = self.player_text
         self.playing['text'] = self.player
         self.timer['text'] = "You Go First"
-        GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown(), bouncetime=500)
+        GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)
 
     def countdown(self):
         time_left = self.time_limit
