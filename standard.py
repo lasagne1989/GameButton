@@ -33,6 +33,7 @@ class Standard:
         self.time_text = DoubleVar()
         self.player_text = DoubleVar()
         self.player = None
+        self.player_cycle = []
         self.next_player = []
         self.time_limit = time_limit
         self.players = players
@@ -40,7 +41,7 @@ class Standard:
         #root.update()
         #select first player
         self.first_player()
-        self.player = next(self.next_player)
+        self.player = self.player_cycle[1]
         self.player_text.set(self.player)
         self.playing['textvariable'] = self.player_text
         self.playing['text'] = self.player
@@ -50,7 +51,7 @@ class Standard:
     def countdown(self):
         time_left = self.time_limit
         self.time_text.set(time_left)
-        self.player = self.next_player[1]
+        self.player = next(self.next_player)
         self.player_text.set(self.player)
         self.playing['textvariable'] = self.player_text
         print(self.player)
@@ -77,9 +78,9 @@ class Standard:
         player_count = len(self.players)
         player_number = randint(0, player_count - 1)
         for i in range(player_count):
-            player_cycle.append(self.players[player_number % player_count])
+            self.player_cycle.append(self.players[player_number % player_count])
             player_number += 1
-            self.next_player = cycle(player_cycle)
+            self.next_player = cycle(self.player_cycle)
 
 
 if __name__ == "__main__":
