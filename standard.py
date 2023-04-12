@@ -48,7 +48,7 @@ class Standard:
         self.timer['text'] = "You Go First"
         GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)
 
-    def countdown(self):
+    def countdown(self, channel):
         time_left = self.time_limit
         self.time_text.set(time_left)
         self.player = next(self.next_player)
