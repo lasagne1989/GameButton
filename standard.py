@@ -8,11 +8,6 @@ from tkinter import *
 
 root = Tk()
 
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-
 
 class Standard:
     def __init__(self, time_limit, players, master):
@@ -46,7 +41,15 @@ class Standard:
         self.playing['textvariable'] = self.player_text
         self.playing['text'] = self.player
         self.timer['text'] = "You Go First"
+        #set up buttons
+        self.pin_setup()
         GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)
+
+    def pin_setup(self):
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
     def countdown(self, channel):
         time_left = self.time_limit
