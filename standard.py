@@ -8,6 +8,8 @@ from tkinter import *
 
 root = Tk()
 
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
 GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
