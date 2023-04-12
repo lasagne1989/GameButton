@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 
 from time import sleep
-from press import Button
 import RPi.GPIO as GPIO
 from random import randint
 from itertools import cycle
 from tkinter import *
 
 root = Tk()
+
+GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
 class Standard:
@@ -39,12 +41,9 @@ class Standard:
         self.player = next(self.next_player)
         self.player_text.set(self.player)
         self.playing['textvariable'] = self.player_text
-        self.playing['text'] = f"{self.player}, You Go First!"
+        self.playing['text'] = self.player
         self.timer['text'] = "You Go First"
-        reg_event = Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, self.countdown)
-        reg_event.setup()
-        reg_event.event()
-        #self.countdown()
+        GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)
 
     def countdown(self):
         time_left = self.time_limit
@@ -68,8 +67,8 @@ class Standard:
         self.restart()
 
     def restart(self):
-        wait_event = Button(GPIO.IN, GPIO.PUD_DOWN, GPIO.FALLING, self.countdown())
-        wait_event.wait()
+        GPIO.wait_for_edge(12, GPIO.FALLING, bouncetime=500)
+        self.countdown()
 
     def first_player(self):
         player_cycle = []
