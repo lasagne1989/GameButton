@@ -9,13 +9,14 @@ from tkinter import *
 
 root = Tk()
 
+
 class Standard:
     def __init__(self, time_limit, players, master):
         self.master = master
         #set up screen
         root.config(cursor="none")
-        #root.geometry("320x240")
-        root.attributes('-fullscreen', True)
+        root.geometry("320x240")
+        #root.attributes('-fullscreen', True)
         root['bg'] = 'grey9'
         root.attributes("-topmost", True)
         #set up labels
@@ -60,7 +61,7 @@ class Standard:
             self.time_text.set(time_left)
             print(time_left)
             sleep(1)
-        self.time_text.set("You Dumb Bitch!!!")
+        self.time_text.set('You Dumb Bitch!!!')
         self.timer['textvariable'] = self.time_text
         root.update()
         print("You Dumb Bitch")
@@ -78,7 +79,6 @@ class Standard:
             player_cycle.append(self.players[player_number % player_count])
             player_number += 1
             self.next_player = cycle(player_cycle)
-
 
 
 if __name__ == "__main__":

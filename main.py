@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from GameButton.chess import Chess
+from chess import Chess
 from websocket import sockSVR
 from data import Data
 from standard import Standard
@@ -14,8 +14,8 @@ class GameButton:
         self.master = master
         # Set up screen
         root.config(cursor="none")
-        #root.geometry("320x240")
-        root.attributes('-fullscreen', True)
+        root.geometry("320x240")
+        #root.attributes('-fullscreen', True)
         root['bg'] = 'grey9'
         root.attributes("-topmost", True)
 
