@@ -4,6 +4,7 @@ from time import sleep
 import RPi.GPIO as GPIO
 from random import randint
 from itertools import cycle
+from threading import Thread
 from tkinter import *
 
 root = Tk()
@@ -49,6 +50,7 @@ class Standard:
         self.playing['text'] = self.player
         self.timer['text'] = "You Go First"
         # set up buttons
+        t = Thread(target=GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)).start()
         #pin_setup()
         #GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)
 
@@ -60,8 +62,8 @@ class Standard:
         self.playing['textvariable'] = self.player_text
         print(self.player)
         while time_left != 0:
-            if time_left == self.time_limit:
-                GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)
+            #if time_left == self.time_limit:
+            #    GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)
             # add button press to call restart()
             self.timer['textvariable'] = self.time_text
             root.update()
