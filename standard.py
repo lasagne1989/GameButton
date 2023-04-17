@@ -63,6 +63,7 @@ class Standard:
         print(self.player)
         while time_left != 0:
             if time_left == self.time_limit:
+                print("working")
                 GPIO.remove_event_detect(channel)
                 GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)
             # add button press to call restart()
