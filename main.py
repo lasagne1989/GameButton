@@ -3,6 +3,10 @@ from websocket import sockSVR
 from data import Data
 from tkinter import *
 
+#fixes:
+#"you got first" name incorrect
+#button not stopping loop, needs to be called in the loop?
+
 root = Tk()
 
 
