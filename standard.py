@@ -80,7 +80,7 @@ class Standard:
 
     def restart(self):
         GPIO.wait_for_edge(12, GPIO.FALLING, bouncetime=500)
-        self.countdown()
+        self.countdown(10)
 
     def first_player(self):
         self.player_cycle = []
