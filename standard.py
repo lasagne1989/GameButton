@@ -63,7 +63,7 @@ class Standard:
         print(self.player)
         while time_left != 0:
             # add button press to call restart()
-            if time_left == 3:
+            if GPIO.event_detected(10):
                 self.countdown(10)
             self.timer['textvariable'] = self.time_text
             root.update()
