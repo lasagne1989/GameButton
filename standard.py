@@ -62,11 +62,9 @@ class Standard:
         self.playing['textvariable'] = self.player_text
         print(self.player)
         while time_left != 0:
-            if time_left == self.time_limit:
-                print("working")
-                GPIO.remove_event_detect(channel)
-                GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)
             # add button press to call restart()
+            if time_left == 3:
+                self.countdown(10)
             self.timer['textvariable'] = self.time_text
             root.update()
             time_left -= 1
