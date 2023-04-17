@@ -64,6 +64,7 @@ class Standard:
         while time_left != 0:
             # add button press to call restart()
             if GPIO.event_detected(10):
+                print("beep")
                 self.countdown(10)
             self.timer['textvariable'] = self.time_text
             root.update()
