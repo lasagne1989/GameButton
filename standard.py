@@ -4,7 +4,6 @@ from time import sleep
 import RPi.GPIO as GPIO
 from random import randint
 from itertools import cycle
-from threading import Thread
 from tkinter import *
 
 root = Tk()
@@ -22,8 +21,8 @@ class Standard:
         self.master = master
         # set up screen
         root.config(cursor="none")
-        root.geometry("320x240")
-        # root.attributes('-fullscreen', True)
+        #root.geometry("320x240")
+        root.attributes('-fullscreen', True)
         root['bg'] = 'grey9'
         root.attributes("-topmost", True)
         # set up labels
@@ -40,9 +39,6 @@ class Standard:
         self.next_player = []
         self.time_limit = time_limit
         self.players = players
-        self.firstrun = True
-        # update screen
-        # root.update()
         # select first player
         self.first_player()
         self.player = self.player_cycle[1]
@@ -51,13 +47,9 @@ class Standard:
         self.playing['text'] = self.player
         self.timer['text'] = "You Go First"
         # set up buttons
-        #t = Thread(target=GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)).start()
-        #pin_setup()
-        #GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)
         GPIO.add_event_detect(10, GPIO.FALLING, bouncetime=500)
         GPIO.wait_for_edge(12, GPIO.FALLING, bouncetime=500)
         self.countdown(10)
-
 
 
     def countdown(self, channel):
@@ -67,9 +59,8 @@ class Standard:
         self.player_text.set(self.player)
         self.playing['textvariable'] = self.player_text
         print(self.player)
-
         while time_left != 0:
-            # add button press to call restart()
+
             if GPIO.event_detected(10):
                 print("beep")
                 self.countdown(10)
