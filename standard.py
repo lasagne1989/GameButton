@@ -59,14 +59,16 @@ class Standard:
 
 
     def countdown(self, channel):
+        GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)
         time_left = self.time_limit
         self.time_text.set(time_left)
         self.player = next(self.next_player)
         self.player_text.set(self.player)
         self.playing['textvariable'] = self.player_text
         print(self.player)
+
         while time_left != 0:
-            GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)
+
             # add button press to call restart()
             #if GPIO.event_detected(10):
             #    print("beep")
