@@ -65,7 +65,7 @@ class Standard:
         self.player_text.set(self.player)
         self.playing['textvariable'] = self.player_text
         print(self.player)
-        while time_left != 0 and GPIO.input(10) == GPIO.LOW:
+        while time_left != 0:
             # add button press to call restart()
             #if GPIO.event_detected(10):
             #    print("beep")
