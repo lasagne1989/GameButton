@@ -40,6 +40,7 @@ class Standard:
         self.next_player = []
         self.time_limit = time_limit
         self.players = players
+        self.firstrun = True
         # update screen
         # root.update()
         # select first player
@@ -59,7 +60,9 @@ class Standard:
 
 
     def countdown(self, channel):
-        GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)
+        if self.firstrun:
+            GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)
+            self.firstrun = False
         time_left = self.time_limit
         self.time_text.set(time_left)
         self.player = next(self.next_player)
