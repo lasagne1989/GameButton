@@ -52,9 +52,12 @@ class Standard:
         # set up buttons
         #t = Thread(target=GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)).start()
         #pin_setup()
-        GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)
+        GPIO.add_event_detect(10, GPIO.RISING, bouncetime=500)
+        if GPIO.event_detected(10):
+            print('yes')
+            self.countdown()
 
-    def countdown(self, channel):
+    def countdown(self):
         time_left = self.time_limit
         self.time_text.set(time_left)
         self.player = next(self.next_player)
@@ -65,7 +68,7 @@ class Standard:
             # add button press to call restart()
             if GPIO.event_detected(10):
                 print("beep")
-                self.countdown(10)
+                self.countdown()
             self.timer['textvariable'] = self.time_text
             root.update()
             time_left -= 1
@@ -80,7 +83,7 @@ class Standard:
 
     def restart(self):
         GPIO.wait_for_edge(12, GPIO.FALLING, bouncetime=500)
-        self.countdown(10)
+        self.countdown()
 
     def first_player(self):
         self.player_cycle = []
