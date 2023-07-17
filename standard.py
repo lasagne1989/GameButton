@@ -52,7 +52,7 @@ class Standard:
         # set up buttons
         #t = Thread(target=GPIO.add_event_detect(10, GPIO.FALLING, callback=self.countdown, bouncetime=500)).start()
         #pin_setup()
-        GPIO.add_event_detect(10, GPIO.RISING, bouncetime=500)
+        GPIO.add_event_detect(10, GPIO.FALLING, bouncetime=500)
         if GPIO.event_detected(10):
             print('yes')
             self.countdown()
