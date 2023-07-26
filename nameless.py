@@ -1,9 +1,16 @@
 #!/usr/bin/env python
 
 from time import sleep
+import RPi.GPIO as GPIO
 from tkinter import *
 
 root = Tk()
+
+def pin_setup():
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
 class Nameless:
@@ -21,13 +28,19 @@ class Nameless:
         self.time_limit = time_limit
         self.time_text = DoubleVar()
         root.update()
-        self.countdown()
+        # set up buttons
+        GPIO.add_event_detect(10, GPIO.FALLING, bouncetime=500)
+        GPIO.wait_for_edge(12, GPIO.FALLING, bouncetime=500)
+        self.countdown(10)
 
-    def countdown(self):
+    def countdown(self, channel):
         time_left = self.time_limit
         self.time_text.set(time_left)
         while time_left != 0:
-            # add button press to call restart()
+
+            if GPIO.event_detected(10):
+                print("beep")
+                self.countdown(10)
             self.timer['textvariable'] = self.time_text
             root.update()
             time_left -= 1
@@ -41,10 +54,15 @@ class Nameless:
         self.restart()
 
     def restart(self):
-        # add await button press
+        GPIO.wait_for_edge(12, GPIO.FALLING, bouncetime=500)
         sleep(1)
         self.countdown()
 
-if __name__ == "__main__":
-    app = Nameless(time_limit, root)
+def start_nameless(time_limit):
+    pin_setup()
+    app = Nameless(time_limit, master=None)
     root.mainloop()
+
+
+if __name__ == '__main__':
+    start_nameless(time_limit)
