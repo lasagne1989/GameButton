@@ -1,12 +1,18 @@
 #!/usr/bin/env python
 
 from time import sleep
+import RPi.GPIO as GPIO
 from random import randint
 from itertools import cycle
 from tkinter import *
 
 root = Tk()
 
+def pin_setup():
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 class Chess:
     def __init__(self, time_limit, players, master):
@@ -34,13 +40,15 @@ class Chess:
         root.update()
         self.dictionary()
         self.first_player()
-        self.countdown()
+        GPIO.add_event_detect(10, GPIO.FALLING, bouncetime=500)
+        GPIO.wait_for_edge(12, GPIO.FALLING, bouncetime=500)
+        self.countdown(10)
 
     def dictionary(self):
         for p in self.players:
             self.dict.update({p: self.time_limit})
 
-    def countdown(self):
+    def countdown(self, channel):
         self.player = next(self.next_player)
 
         self.time_left: int = self.dict[self.player]
@@ -50,7 +58,9 @@ class Chess:
         self.playing['textvariable'] = self.player_text
         print(self.player)
         while self.time_left != 0:
-            # add button press to call restart()
+            if GPIO.event_detected(10):
+                print("beep")
+                self.countdown(10)
             self.timer['textvariable'] = self.time_text
             root.update()
             self.time_left -= 1
@@ -64,6 +74,7 @@ class Chess:
         self.restart()
 
     def restart(self):
+        GPIO.wait_for_edge(12, GPIO.FALLING, bouncetime=500)
         self.dict[self.player] = self.time_left
         # add await button press
         sleep(1)
@@ -79,6 +90,11 @@ class Chess:
             self.next_player = cycle(player_cycle)
 
 
-if __name__ == "__main__":
-    app = Chess(time_limit, players, root)
+def start_chess(time_limit, players):
+    pin_setup()
+    app = Chess(time_limit, players, master=None)
     root.mainloop()
+
+
+if __name__ == '__main__':
+    start_chess(time_limit, players)
