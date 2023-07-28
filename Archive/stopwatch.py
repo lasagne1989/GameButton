@@ -2,7 +2,7 @@
 #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
 
 #py files
-from GameButton import press
+from GameButton.Archive import press
 import myIP
 #libraries
 import json

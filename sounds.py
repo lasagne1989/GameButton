@@ -4,7 +4,6 @@ import random
 import subprocess
 from pathlib import *
 
-
 def gimmeSomeBanter:
     pathToAudio = Path("./AudioFiles/")
     audioFiles = list(pathToAudio.glob('**/*.mp3'))
