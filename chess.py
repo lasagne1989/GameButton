@@ -8,11 +8,13 @@ from tkinter import *
 
 root = Tk()
 
+
 def pin_setup():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
 
 class Chess:
     def __init__(self, time_limit, players, master):
@@ -78,7 +80,7 @@ class Chess:
         self.dict[self.player] = self.time_left
         # add await button press
         sleep(1)
-        self.countdown()
+        self.countdown(10)
 
     def first_player(self):
         player_cycle = []

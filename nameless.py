@@ -56,7 +56,7 @@ class Nameless:
     def restart(self):
         GPIO.wait_for_edge(12, GPIO.FALLING, bouncetime=500)
         sleep(1)
-        self.countdown()
+        self.countdown(10)
 
 def start_nameless(time_limit):
     pin_setup()
