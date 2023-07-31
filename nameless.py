@@ -26,6 +26,7 @@ class Nameless:
 
         self.timer = Label(master, fg='white', bg='grey9', font=("Ariel", 38), wraplength=318)
         self.timer.place(relx=.5, rely=.5, anchor="center")
+        self.timer['text'] = "Press the Button to Start"
         self.time_limit = time_limit
         self.time_text = DoubleVar()
         root.update()
