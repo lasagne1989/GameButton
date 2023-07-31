@@ -10,7 +10,6 @@ root = Tk()
 def pin_setup():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BOARD)
-    print('GPIO setup done')
     GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
@@ -21,7 +20,7 @@ class Nameless:
         # Set up screen
         root.config(cursor="none")
         root.geometry("320x240")
-        #root.attributes('-fullscreen', True)
+        # root.attributes('-fullscreen', True)
         root['bg'] = 'grey9'
         root.attributes("-topmost", True)
 
@@ -31,7 +30,6 @@ class Nameless:
         self.time_text = DoubleVar()
         root.update()
         # set up buttons
-        print('here here')
         GPIO.add_event_detect(10, GPIO.FALLING, bouncetime=500)
         GPIO.wait_for_edge(12, GPIO.FALLING, bouncetime=500)
         self.countdown(10)
@@ -60,6 +58,7 @@ class Nameless:
         GPIO.wait_for_edge(12, GPIO.FALLING, bouncetime=500)
         sleep(1)
         self.countdown(10)
+
 
 def start_nameless(time_limit):
     pin_setup()
