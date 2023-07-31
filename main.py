@@ -54,11 +54,11 @@ class GameButton:
         if self.mode == "Nameless":
             root.destroy()
             from nameless import start_nameless
-            start_nameless(self.time_limit, master=None)
+            start_nameless(self.time_limit)
         if self.mode == "Chess":
             root.destroy()
             from chess import start_chess
-            start_chess(self.time_limit, self.players, master=None)
+            start_chess(self.time_limit, self.players)
 
 
 if __name__ == "__main__":
