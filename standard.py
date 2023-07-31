@@ -46,6 +46,7 @@ class Standard:
         self.playing['textvariable'] = self.player_text
         self.playing['text'] = self.player
         self.timer['text'] = "You Go First"
+        root.update()
         # set up buttons
         GPIO.add_event_detect(10, GPIO.FALLING, bouncetime=500)
         GPIO.wait_for_edge(12, GPIO.FALLING, bouncetime=500)
