@@ -9,6 +9,7 @@ root = Tk()
 def pin_setup():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BOARD)
+    print('GPIO setup done')
     GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
