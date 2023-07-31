@@ -6,6 +6,7 @@ from tkinter import *
 
 root = Tk()
 
+
 def pin_setup():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BOARD)
@@ -30,6 +31,7 @@ class Nameless:
         self.time_text = DoubleVar()
         root.update()
         # set up buttons
+        print('here here')
         GPIO.add_event_detect(10, GPIO.FALLING, bouncetime=500)
         GPIO.wait_for_edge(12, GPIO.FALLING, bouncetime=500)
         self.countdown(10)
