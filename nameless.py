@@ -19,8 +19,8 @@ class Nameless:
         self.master = master
         # Set up screen
         root.config(cursor="none")
-        root.geometry("320x240")
-        # root.attributes('-fullscreen', True)
+        #root.geometry("320x240")
+        root.attributes('-fullscreen', True)
         root['bg'] = 'grey9'
         root.attributes("-topmost", True)
 
